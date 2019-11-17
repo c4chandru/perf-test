@@ -18,7 +18,7 @@ class LoadTestTask(TaskSet):
             self.token_list = list(token_reader)
 
     def on_start(self):
-        print self.task_id
+        print(self.task_id)
 
     @task(1)
     def play(self):
@@ -26,8 +26,6 @@ class LoadTestTask(TaskSet):
         value = random.choice(self.token_list)
 
         sid = value[0]
-
-        print(sid)
 
         endpoint = ":8001/game/play"
 
@@ -41,13 +39,13 @@ class LoadTestTask(TaskSet):
         }
 
         with self.client.post(endpoint, headers=headers, json=body,
-                              name="Play", catch_response=True) as response:
+                              name="play_post", catch_response=True) as response:
 
             if response.status_code == 200:
                 response.success()
-                print response.status_code
+                print(response.status_code)
             else:
-                print response.status_code
+                print(response.status_code)
                 return False
 
 
