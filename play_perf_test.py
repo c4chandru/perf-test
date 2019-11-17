@@ -23,6 +23,14 @@ class LoadTestTask(TaskSet):
     @task(1)
     def play(self):
 
+        '''
+        The key endpoint to check the threshold is /play so from csv a list is created and
+        from the list of sid's, we are choosing the a sid randomly and hitting the endpoint to
+        check the response output,
+
+        expected : 200, status ok
+        '''
+
         value = random.choice(self.token_list)
 
         sid = value[0]

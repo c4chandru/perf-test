@@ -22,6 +22,10 @@ class LoadTestTask(TaskSet):
 
     @task(1)
     def ping_post(self):
+        '''
+        This methdod to check the status of the play post play call
+        should return 200 status code
+        '''
 
         value = random.choice(self.token_list)
 
@@ -48,6 +52,10 @@ class LoadTestTask(TaskSet):
     @task(1)
     def ping_options(self):
 
+        '''
+        This methdod to check the status of the play post play call
+        should return 204 status code
+        '''
         value = random.choice(self.token_list)
 
         sid = value[0]
@@ -64,7 +72,7 @@ class LoadTestTask(TaskSet):
         with self.client.options(endpoint, headers=headers, json=body,
                               name="ping_options", catch_response=True) as response:
 
-            if response.status_code == 200:
+            if response.status_code == 200 or 204:
                 response.success()
                 print(response.status_code)
             else:
@@ -73,6 +81,11 @@ class LoadTestTask(TaskSet):
 
     @task(1)
     def setrestorestate_options(self):
+
+        '''
+        This methdod to check the status of the play post play call
+        should return 204 status code
+        '''
 
         value = random.choice(self.token_list)
 
@@ -89,7 +102,7 @@ class LoadTestTask(TaskSet):
         with self.client.options(endpoint, headers=headers, json=body,
                                  name="setrestorestate_options", catch_response=True) as response:
 
-            if response.status_code == 200:
+            if response.status_code == 200 or 204:
                 response.success()
                 print(response.status_code)
             else:
@@ -98,6 +111,11 @@ class LoadTestTask(TaskSet):
 
     @task(1)
     def setrestorestate_post(self):
+
+        '''
+        This methdod to check the status of the play post play call
+        should return 200 status code
+        '''
 
         value = random.choice(self.token_list)
 

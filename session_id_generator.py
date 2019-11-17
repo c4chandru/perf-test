@@ -15,6 +15,10 @@ class Token:
         self.clientid = ""
 
     def get_token(self):
+        '''
+        In this method token and user id is created and returned from post call.
+        It is passed to generate session_id
+        '''
 
         end_point = self.url+"/capi/1.0/casino/token/gettoken"
 
@@ -34,9 +38,14 @@ class Token:
         user_id = temp['response']['userid']
         token = temp['response']['token']
 
-        return (user_id,token)
+        return user_id, token
 
     def get_session_id(self):
+
+        '''
+        Here session id i.e sid is generated using user_id and token
+        from /gettoken endpoint's response
+        '''
 
         data = Token()
         user_id = data.get_token()[0]
@@ -64,6 +73,11 @@ class Token:
         return sid
 
     def generate_session_id(self):
+
+        '''
+        In this method we can create a file with Static session id's that are needed for the perf test
+        of all the endpoints,to avoid time complexity as while running the perf we are adding it to a csv file
+        '''
 
         token = []
 
